@@ -1,0 +1,84 @@
+// Declaración de variables globales
+Entero: playerCard, playerCard2, compuCard, compuCard2, playerPoint, compuPoint, new_card
+Cadena: respuesta
+
+// Subproceso principal que almacenará todos los demás procesos
+PROCESO juego_Blackjack()
+
+PROCESO leer_respuesta()
+    Cadena: respuesta
+    Leer respuesta
+    RETORNAR respuesta
+FIN PROCESO
+
+PROCESO mensajeInicio()
+    Mostrar "Bienvenido al Blackjack."
+FIN PROCESO
+
+PROCESO repartirCartas()
+    playerCard = draw_card()
+    playerCard2 = draw_card()
+    playerPoint = playerCard + playerCard2
+    Escribir "Tus cartas son: ", playerCard, ", ", playerCard2
+FIN PROCESO
+
+PROCESO repartirCartasComputadora()
+    compuCard = draw_card()
+    compuCard2 = draw_card()
+    compuPoint = compuCard + compuCard2
+    Escribir "La máquina tiene sus dos cartas"
+FIN PROCESO
+
+PROCESO cicloPedir()
+    MIENTRAS playerPoint < 21 HACER:
+        Escribir "¿Deseas pedir otra carta? (si/no)"
+        respuesta = leer_respuesta()
+
+        SI respuesta == "si" ENTONCES:
+            new_card = draw_card()
+            playerPoint = playerPoint + new_card
+            Escribir "Tu nueva carta es: ", new_card
+            Escribir "Tus cartas ahora son: ", playerCard, ", ", playerCard2, ", ", new_card
+
+            SI playerPoint > 21 ENTONCES:
+                Escribir "Tu puntaje es mayor a 21, ¡PERDISTE!!!"
+                SALIR
+            SINO SI playerPoint == 21 ENTONCES:
+                Escribir "¡BLACKJACK, TU PUNTAJE ES 21!"
+                RETORNAR
+            FIN SI
+        SINO
+            SALIR
+        FIN SI
+    FIN MIENTRAS
+FIN PROCESO
+
+PROCESO mostrarComparar()
+    Escribir "Estas son las cartas de la computadora: ", compuCard, ", ", compuCard2
+    Escribir "El puntaje de la computadora es: ", compuPoint
+
+    SI playerPoint > compuPoint ENTONCES:
+        Escribir "¡Has Ganado!"
+    SINO SI playerPoint < compuPoint ENTONCES:
+        Escribir "PERDISTE"
+    SINO
+        Escribir "Es un empate"
+    FIN SI
+FIN PROCESO
+
+// Subproceso principal para la ejecución del juego
+PROCESO main()
+    mensajeInicio()
+    repartirCartas()
+    repartirCartasComputadora()
+    cicloPedir()
+    SI playerPoint <= 21 ENTONCES
+            mostrarComparar()
+    FIN SI
+FIN PROCESO
+
+
+
+
+
+
