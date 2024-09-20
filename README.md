@@ -15,4 +15,8 @@ Kevin López Alonso
 
 Adrián Ezequiel Nava Hernández
 
+<<<<<<< HEAD
 Braulio Saeth Santamaria González
+=======
+Braulio Saeth Santamaria González
+>>>>>>> 34a791e5d45c722d7fc0339e9af9ca0d27df5992
