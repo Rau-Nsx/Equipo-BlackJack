@@ -1,6 +1,6 @@
 import java.util.Random;
-
-class Main {
+import java.util.Scanner;
+class Main{
     static int player = 0;
     static int dealer = 0;
     static String playerMessage = "Las cartas del jugador son: ";
